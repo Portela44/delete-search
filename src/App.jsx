@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import productData from './products.json';
+import Product from './components/Product';
 
 function App() {
   const [products, setProducts] = useState(productData);
@@ -24,14 +25,8 @@ function App() {
       <h1>My shopping cart</h1>
       <input type="text" placeholder="Nice placeholder" onChange={e => handleSearch(e)}/>
       {products.map(product => {
-        return (
-          <div className="eachProduct" key={product._id}>
-            <p>{product.name}</p>
-            <button className="delete-btn" onClick={() => handleDelete(product._id)}>Delete</button>
-          </div>
-        );
+        return <Product key={product._id} product={product} onDelete={handleDelete}/>
       })}
-
     </div>
   );
 }
